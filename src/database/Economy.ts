@@ -1,1 +1,0 @@
-import { EconomyGlobal } from "./typings/Economy";

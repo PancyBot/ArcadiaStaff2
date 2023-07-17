@@ -1,29 +1,15 @@
 import { Event } from "../../structures/Events";
 import { client } from "../..";
-import { fecthDataBase, updateDataBase } from "../../utils/CacheSystem/functions";
-import { fecthUsersDataBase, updateUsersDataBase } from "../../utils/CacheSystem/functions";
-import { utils } from "../..";
-import { Message, TextChannel } from "discord.js";
-import { GuildDataFirst } from "../../database/typings/Security";
-import { antiRF } from "../../database/BotDataBase";
 import { botStaff } from '../../utils/variables.json'
-import ms from 'ms';
-import antiIpLogger from 'anti-ip-logger'
-const mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-export let _guild: GuildDataFirst
 
 export default new Event('messageCreate', async msg => {
-    const data = await antiRF.findOne({ user: msg.author.id })
     const {guild, author} = msg
 
     if(!guild) return console.log('No is guild');
     if(!guild.available) return console.log('Guild unavilable');
 
-    let _guild = await fecthDataBase(client, guild, true) as GuildDataFirst;
-    if(!_guild) return console.log('No cache');
-
     console.log(3)
-    const prefix = _guild.configuration.prefix
+    const prefix = "ar$"
     console.log(prefix)
     const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       const prefixRegex = new RegExp(
@@ -57,23 +43,13 @@ export default new Event('messageCreate', async msg => {
         command.run({
           args,
           client,
-          message: msg,
-          _guild: _guild
-        })
-      } else if(command.inVoiceChannel) {
-        if(!msg.member.voice.channel) return msg.reply('Necesitas unirte a un canal de vox')
-        command.run({
-            args,
-            client,
-            message: msg,
-            _guild: _guild
+          message: msg
         })
       } else {
         command.run({
           args,
           client,
-          message: msg,
-          _guild: _guild
+          message: msg
         })
       }
     } else {

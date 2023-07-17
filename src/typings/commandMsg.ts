@@ -3,7 +3,6 @@ import {
     Message,
     PermissionResolvable
 } from "discord.js";
-import { GuildDataFirst } from "../database/typings/Security";
 import { ExtendedClient } from "../structures/Client";
 
 /**
@@ -20,7 +19,6 @@ interface RunOptions {
     client: ExtendedClient;
     message: Message;
     args: String[] | String[0] | Array<string>;
-    _guild: GuildDataFirst;
 }
 
 type RunFunction = (options: RunOptions) => any;
@@ -31,7 +29,6 @@ export type CommandTypeMsg = {
     use: string;
     userPermissions?: PermissionResolvable[];
     botPermissions?: PermissionResolvable[];
-    inVoiceChannel?: boolean;
     isDev?: boolean
     run: RunFunction;
 } & ChatInputApplicationCommandData;

@@ -2,20 +2,11 @@ declare global {
     namespace NodeJS {
         interface ProcessEnv {
             botToken: string;
-            mongodbUrl: string;
-            topggPassword: string;
-            ubfbToken: string;
-            errorWebhook: string;
+            apiKey: string;
             enviroment: "dev" | "prod" | "debug";
             PORT: number;
+            errorWebhook: string;
             PasswordApi: string;
-            OpenAIApi: string;
-            username: string;
-            password: string;
-            imageDbUrl: string;
-            lavaserver: string;
-            lavapassword: string;
-            linkErrorTracker: string;
         }
     }
 }

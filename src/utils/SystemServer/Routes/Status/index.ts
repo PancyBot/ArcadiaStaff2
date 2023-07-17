@@ -14,21 +14,6 @@ StatusRouter.get("/bot", (req, res) => {
 
                 }
             },
-            database: { 
-                isOnline: utils.getStatusDB().isOnline || false,
-                modules: {
-                    Prefixes: true,
-                    GuildBlacklist: true,
-                    UserBlacklist: true,
-                    PremiumUser: true,
-                    PremiumGuild: true,
-                    AntiRaid: true,
-                    AntiChannels: true,
-                    AntiRoles: false,
-                    AntiBots: false,
-                    AntiJoins: false,
-                }
-            }
          })
     }
 

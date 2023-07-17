@@ -5,7 +5,6 @@ import { version } from '../../../package.json'
 import { ReportErrorOptions } from '../../typings/reportError';
 import { client } from '../..';
 import winston from 'winston';
-import NewRelic from 'newrelic';
 
 const logger = winston.createLogger({
   level: 'error',
@@ -47,10 +46,9 @@ export class AntiCrash {
         process.on('unhandledRejection', async (err, reason, p,) => {
             errors++;
             console.log(errors)
-            console.log(' [antiCrash] :: Unhandled Rejection/Catch');
+            console.log(' [antiCrash/Critical] :: Unhandled Rejection/Catch');
             console.log(reason, p);
             logger.error(`unhandled Rejection: ${err.message}`)
-            NewRelic.noticeError(err)
             const data = `${reason} ${p}`
             if (!existsSync(`${process.cwd()}/ErrorLogs`)) {
                 mkdirSync(`${process.cwd()}/ErrorLogs`, { recursive: true});
@@ -67,7 +65,7 @@ export class AntiCrash {
             let statusCode: number
 
             const {status} = await axios.post(process.env.errorWebhook, {
-                username: `PancyBot ${version} | CrashError`,
+                username: `ArcadiaStaff ${version} | CrashError`,
                 embeds: [
                     Embed
                 ]
@@ -79,10 +77,9 @@ export class AntiCrash {
             
         });
         process.on("uncaughtException", (err, origin) => {
-            console.log(' [antiCrash] :: Uncaught Exception/Catch');
+            console.log(' [antiCrash/Critical] :: Uncaught Exception/Catch');
             console.log(err, origin);
             logger.error(`uncaught Exception: ${err.message}`)
-            NewRelic.noticeError(err)
             const data = `${err + origin}`
             if (!existsSync(`${process.cwd()}/ErrorLogs`)) {
                 mkdirSync(`${process.cwd()}/ErrorLogs`, { recursive: true});
@@ -92,7 +89,7 @@ export class AntiCrash {
             console.log(errors)
         });
         process.on('uncaughtExceptionMonitor', (err, origin) => {
-            console.log(' [antiCrash] :: Uncaught Exception/Catch (MONITOR)');
+            console.log(' [antiCrash/Error] :: Uncaught Exception/Catch (MONITOR)');
             console.log(err, origin);
             const data = `${err + origin}`
             if (!existsSync(`${process.cwd()}/ErrorLogs`)) {
@@ -103,7 +100,7 @@ export class AntiCrash {
             errors++;
         });
         process.on('multipleResolves', (type, promise, reason, origin) => {
-            console.log(' [antiCrash] :: Multiple Resolves');
+            console.log(' [antiCrash/Info] :: Multiple Resolves');
             console.log(type, reason, promise, origin);
         });
     }

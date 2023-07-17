@@ -1,14 +1,13 @@
 import { Event } from "../../structures/Events";
 import { version } from "../../../package.json"
-import { client, crashClient, danbotUser } from "../..";
+import { client, crashClient } from "../..";
 import { ActivityType } from "discord.js"
-import { player } from "../..";
 export default new Event('ready', async (o) => {
     console.log('Bot encendido')
 
     const activities = [
-        `PancyBot | ${version}`,
-        `pan! | ${version}`,
+        `ArcadiaStaff | ${version}`,
+        `ar$ | ${version}`,
         `PancyBot Studios | ${version}`
     ]
 
@@ -24,10 +23,4 @@ export default new Event('ready', async (o) => {
         })
     }, 1000 * 15)
 
-    
-
-    console.log('001')
-    console.log(player.nodes)
-    player.init(o)
-    console.log(player.isActivated)
 })
