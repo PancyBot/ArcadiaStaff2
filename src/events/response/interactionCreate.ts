@@ -5,7 +5,6 @@ import { ExtendedInteraction } from "../../typings/command";
 import { botStaff } from '../../utils/variables.json'
 
 export default new Event("interactionCreate", async (interaction) => {
-    console.log(interaction.id)
     // Chat Input Commands
     if (interaction.isCommand()) {
         console.log(interaction.isRepliable())

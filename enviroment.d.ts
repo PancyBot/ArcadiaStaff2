@@ -7,6 +7,9 @@ declare global {
             PORT: number;
             errorWebhook: string;
             PasswordApi: string;
+            urlApi: string;
+            serverIp: string;
+            rconPassword: string;
         }
     }
 }

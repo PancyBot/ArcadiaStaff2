@@ -8,17 +8,14 @@ export default new Event('messageCreate', async msg => {
     if(!guild) return console.log('No is guild');
     if(!guild.available) return console.log('Guild unavilable');
 
-    console.log(3)
     const prefix = "ar$"
-    console.log(prefix)
     const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       const prefixRegex = new RegExp(
         `^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`
       );
     
-    if (!prefixRegex.test(msg.content)) return console.log(0);
-    console.log(1)
-    if(msg.author.bot) return msg.reply('LOS BOTS NO PUEDEN USAR COMANDOS')
+    if (!prefixRegex.test(msg.content)) return;
+    if(msg.author.bot) return;
 
     
     const [, matchedPrefix] = msg.content.match(prefixRegex);
@@ -53,7 +50,7 @@ export default new Event('messageCreate', async msg => {
         })
       }
     } else {
-      msg.reply('No existe el comando:' + cmd)
+      return;
     }
   }
 )

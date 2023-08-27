@@ -4,7 +4,6 @@ import { PancyBotUtils } from "./utils/SystemBot/BaseUtilsBot";
 import { app } from "./utils/SystemServer";
 import donenv from 'dotenv';
 
-
 donenv.config();
 const firstTime = Date.now();
 
@@ -21,7 +20,9 @@ setTimeout(() => {
         console.debug('[WEB] Start listening on ', PORT)
     })
 }, 5000)
-
+console.log(process.env.urlApi)
+console.log(process.env.botToken)
+console.log(process.env.apiKey)
 console.debug(`[SYSTEM] Bot start in ${Date.now() - firstTime}ms`)
 
 

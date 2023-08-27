@@ -6,7 +6,7 @@ import { ReportErrorOptions } from '../../typings/reportError';
 import { client } from '../..';
 import winston from 'winston';
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
   level: 'error',
   format: winston.format.json(),
   transports: [
@@ -20,6 +20,7 @@ export class CrashError extends Error {
       logger.error(`[${type}] ${message} at ${location}`);
     }
   }
+
 export class AntiCrash {
     constructor() {}
 
@@ -113,13 +114,13 @@ export class AntiCrash {
         .setAuthor({ name: 'CrashReport'})
         .setDescription(`CrashError: ${data.error} ${data.message ?? "unknown"}`)
         .setColor('Red')
-        .setFooter({ text: `Pancybot v${version}` })
+        .setFooter({ text: `ArcadiaStaff v${version}` })
 
 
         let statusCode: number
 
         const {status} = await axios.post(process.env.errorWebhook, {
-            username: `PancyBot ${version} | CrashError`,
+            username: `ArcadiaStaff ${version} | CrashError`,
             embeds: [
                 Embed
             ]
