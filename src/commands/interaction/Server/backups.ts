@@ -34,11 +34,14 @@ export default new Command({
         .setTimestamp()
         .setFooter({ text: `💫 - Powered by PancyStudios | ${interaction.client.user.tag}`, iconURL: interaction.client.user.avatarURL() })
 
-        if(interaction.user.id !== '711329342193664012'||!(interaction.member.roles as GuildMemberRoleManager).cache.has(RolAccess.id)) return interaction.reply({ embeds: [PermsNull], ephemeral: true })
+        console.log(interaction.member.roles.cache.has(RolAccess.id))
+
+        if(!interaction.member.roles.cache.has(RolAccess.id)) return interaction.followUp({ embeds: [PermsNull], ephemeral: true })
         const status = args.getString('status')
         // Leer el contenido del archivo
         const fileContent = fs.readFileSync('/home/container/src/database/backupsAutoStatus.txt').toString();
 
+        
         // Convertir el contenido del archivo a un número
         const number = parseInt(fileContent, 10);
 

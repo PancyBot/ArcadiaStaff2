@@ -29,9 +29,10 @@ export default new Command({
         const ArcangelP = guildArc.roles.cache.get('901306576403591178')
         const Arcangel = guildArc.roles.cache.get('827542979522461768')
         const SemiDiosNv1 = guildArc.roles.cache.get('897536859490623539')
-        const SemiDios = guildArc.roles.cache.get('827542839226531911')
+        const SemiDios = guildArc.roles.cache.get('1144854901311148142')
         const Dios = guildArc.roles.cache.get('827542668795969537')
         const ConsoleAccess = guildArc.roles.cache.get('1137897916737011802')
+        const RolesArray = [ArcangelP, Arcangel, SemiDiosNv1, SemiDios, Dios, ConsoleAccess]
 
         const PermsNull = new EmbedBuilder()
         .setTitle('| Sin Acceso')
@@ -41,12 +42,12 @@ export default new Command({
         .setFooter({ text: `💫 - Powered by PancyStudios | ${interaction.client.user.tag}`, iconURL: interaction.client.user.avatarURL() })
 
         if(
-            !interaction.member.roles.resolve(ArcangelP) ||
-            !interaction.member.roles.resolve(Arcangel) ||
-            !interaction.member.roles.resolve(SemiDiosNv1) ||
-            !interaction.member.roles.resolve(SemiDios) ||
-            !interaction.member.roles.resolve(Dios) ||
-            !interaction.member.roles.resolve(ConsoleAccess)
+            !interaction.member.roles.cache.has(ArcangelP.id) ||
+            !interaction.member.roles.cache.has(Arcangel.id) ||
+            !interaction.member.roles.cache.has(SemiDiosNv1.id) ||
+            !interaction.member.roles.cache.has(SemiDios.id) ||
+            !interaction.member.roles.cache.has(Dios.id) ||
+            !interaction.member.roles.cache.has(ConsoleAccess.id)
         ) return await interaction.followUp({ embeds: [PermsNull], ephemeral: true});
 
         const LogEmbed = new EmbedBuilder()
